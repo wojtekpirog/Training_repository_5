@@ -49,22 +49,28 @@ main {
 .tooltip::before {
   display: none;
   position: absolute;
-  width: 100%;
+  left: -25%;
+  text-align: center;
+  width: 150%;
   padding: 5px 10px;
-  border-radius: 5px;
   background-color: #9b9b9b;
   font-size: 1.2rem;
 }
 .tooltip:hover::before {
   display: block;
+  animation: 0.5s ease-in-out forwards;
 }
 .tooltip:hover.tooltip-top::before {
   content: "Górny tooltip";
-  animation: tooltipTop 0.5s ease-in-out forwards;
+  animation-name: tooltipTop;
 }
 .tooltip:hover.tooltip-right::before {
   content: "Prawy tooltip";
-  animation: tooltipRight 0.5s ease-in-out forwards;
+  animation-name: tooltipRight;
+}
+.tooltip:hover.tooltip-bottom::before {
+  content: "Dolny tooltip";
+  animation-name: tooltipBottom;
 }
 
 .input-box {
@@ -150,7 +156,15 @@ main {
     transform: translateX(0) scale(0);
   }
   100% {
-    transform: translateX(110%) scale(1);
+    transform: translate(100%, -25%) scale(1);
+  }
+}
+@keyframes tooltipBottom {
+  0% {
+    transform: translateY(0) scale(0);
+  }
+  100% {
+    transform: translateY(130%) scale(1);
   }
 }
 @keyframes label {
