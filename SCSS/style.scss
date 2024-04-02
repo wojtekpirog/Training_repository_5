@@ -1,0 +1,170 @@
+@use "./reset.scss" as *;
+
+body {
+  font-family: "Sen", sans-serif;
+  overflow: hidden;
+}
+
+h1 {
+  height: 140px;
+  line-height: 140px;
+  text-align: center;
+  font-size: 3rem;
+}
+
+main {
+  height: calc(100% - 140px);
+}
+
+.app-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+}
+
+.tooltip-box {
+  width: 400px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tooltip {
+  position: relative;
+
+  &::before {
+    display: none;
+    position: absolute;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #9b9b9b;
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    &::before {
+      display: block;
+    }
+
+    &.tooltip-top::before {
+      content: "Górny tooltip";
+      animation: tooltipTop .5s ease-in-out forwards;
+    }
+
+    &.tooltip-right::before {
+      content: "Prawy tooltip";
+      animation: tooltipRight .5s ease-in-out forwards;
+    }
+  }
+}
+
+.input-box {
+  margin: 20px 0;
+  position: relative;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;  
+
+  label {
+    position: absolute;
+    top: 24%;
+    left: 3%;
+    color: rgb(75, 75, 75);
+    transition: top .3s ease-in-out, left .3s ease-in-out;
+  }
+
+  input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-family: "Sen", sans-serif;
+
+    &:focus {
+      outline: none;
+      background-color: #ccfefd;
+
+      & + label {
+        top: -70%;
+        left: 0;
+        animation: label .3s ease-in-out forwards;
+        pointer-events: none;
+      }
+    }
+
+    &.input-two {
+      background-color: #232629;
+      color: #f6f6f6;
+      border: 3px solid #f6f6f6;
+
+      & + label {
+        top: 26%;
+        color: #f6f6f6;
+        padding: 0 2px;       
+      }
+
+      &:focus {
+        border-color: #ccfefd;
+
+        & + label {
+          top: -22%;
+          left: 3%;
+          background-color: #232629;
+        }
+      }
+    }
+    
+    &.input-three {
+      background-color: #232629;
+      color: #f6f6f6;
+      border: 3px solid #f6f6f6;
+
+      & + label {
+        color: #f6f6f6;
+        padding: 0 2px;
+      }
+
+      &:focus {
+        border-color: #ccfefd;
+
+        & + label {
+          top: 35px;
+          left: 3%;
+          padding: 0 2px;
+          background-color: #232629;
+          pointer-events: none;
+        }       
+      }
+    }
+  }
+}
+
+@keyframes tooltipTop {
+  0% {    
+    transform: translateY(0) scale(0);
+  } 100% {
+    transform: translateY(-130%) scale(1);
+  }
+}
+
+@keyframes tooltipRight {
+  0% {
+    transform: translateX(0) scale(0);
+  } 100% {
+    transform: translateX(110%) scale(1);
+  }
+}
+
+@keyframes label {
+  40% {
+    color: rgb(75, 75, 75);
+  } 60% {
+    color: #f6f6f6;
+  } 100% {
+    color: #f6f6f6;
+  }
+}
